@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quantfunds – Get atleast 20% more than your buy and hold strategy.</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="../stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/b978cbdbfe.js" crossorigin="anonymous"></script>
+        <!-- <link rel="stylesheet" href="../css/custom.css"> -->
+        <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="../css/plugins/toastr/toastr.min.css" rel="stylesheet">
+        <link href="../css/animate.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+    
+        <!-- Mainly scripts -->
+        <script src="../js/jquery-3.1.1.min.js"></script>
+        <script src="../js/popper.min.js"></script>
+        <script src="../js/bootstrap.js"></script>
+        <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!-- 1. Add the following script to your page. -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
+        <script src="../angular/angular-storage.min.js"></script>
+        <script src="../angular/angular-payments.js"></script>
+        <script src="../angular/app.js"></script>
+        <script src="../angular/service.js"></script>
+
+           <!-- Mainly scripts -->
+
+
+        <script src="./angular/index.js"></script>
+
+    </head>
+
+<body ng-app="website"  ng-controller="index-ctrl" ng-init="init()" >
+      
+            <div id="wrapper">
+                <div id="page-wrapper">
+                    <div class="row border-bottom">
+                        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                            <div class="navbar-header">
+                                <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                                        class="fa fa-bars"></i> </a>
+                                        <ul class="nav navbar-top-links navbar-left p-3">
+                                            <span style="padding-right: 20px;"><img src="/img/quantportfolios_dark.png" width="200px"  > </span>
+                                            <span><a style="text-decoration:none;cursor:hand;color: #2586ba;font-weight:800;"
+                                                    href="index.html">HOME</a></span>
+                                            <span style="padding-left: 22px;"><a
+                                                    style="text-decoration:none;cursor:hand;color: #2586ba;font-weight:800;"
+                                                    href="quant-portfolios.html">QUANT PORTFOLIO</a></span>
+                                            <span style="padding-left: 22px;"><a
+                                                style="text-decoration:none;cursor:hand;color: #2586ba;font-weight:800;"
+                                                href="alerts.html">Alerts</a></span>
+                                            <span style="padding-left: 22px;"><a
+                                                style="text-decoration:none;cursor:hand;color: #2586ba;font-weight:800;"
+                                                href="automated_trading.html">Automated Trading</a></span>
+                                                <span style="padding-left: 22px;"><a
+                                                    style="text-decoration:none;cursor:hand;color: #2586ba;font-weight:800;"
+                                                    href="consultancy.html">Consultancy</a></span>    
+                                                
+                
+                                        </ul>     
+                            </div>
+                            
+        
+                            <ul class="nav navbar-top-links navbar-right p-3">
+                              
+                                <div ng-if="islogin == 1">
+                                    <span style="color:white;padding-right:20px;font-weight:600;"><a href="index.html" style="color:white;">Home</a> 
+                                    </span>
+
+                                    <span style="color:white;padding-right:20px;font-weight:600;"><a href="/signals/signals.html" style="color:white;">Signals</a> 
+                                    </span>
+
+
+                                    <span style="color:white;padding-right:20px;font-weight:600;"><a href="/live/welcome.html" style="color:white;">My Porfolio</a> 
+                                    </span>
+
+                                </div>
+                                
+                                
+
+                              
+                                <div ng-if="islogin != 1">
+                                    <span style="color:white;padding-right:20px;font-weight:600;"><a href="index.html" style="color:white;">Home</a> 
+                                    </span>
+                                  
+                                  
+                                     <span style="color:white;padding-right:20px;font-weight:600;"><a href="register.html" style="color:white;">Login / Register</a></span>
+                                </div>
+                                <div ng-if="islogin == 1 ">
+                                    <div class="dropdown profile-element">
+                                        
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                        
+                                            <span style="color:white;"> Hello {{ name}}<b class="caret"></b></span>
+                                        </a>
+                                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                            <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                                            <li><a class="dropdown-item" ng-click="logout()">Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                               
+
+                               
+                            </ul>
+                            
+                        </nav>
+                    </div>
+                    <div class="wrapper wrapper-content"  >
+                        <div id="inSlider" class="carousel slide" data-ride="carousel" >
+                            <ol class="carousel-indicators">
+                                <li data-target="#inSlider" data-slide-to="0" class="active"></li>
+                                <li data-target="#inSlider" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                <div class="carousel-item active">
+                                    <div class="carousel-caption blank" >
+                                        <h1 style="color:#e4f3fb">Find the best Quant<br> Funds here.</h1>
+                                        <p>Incredible returns by using Machine AI, Quant Strategies.</p>
+                                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                                    </div>
+                                    <div class="carousel-image wow zoomIn">
+                                        <img src="img/landing/header_two.jpg" style="width: 100%;" alt="laptop"/>
+                                    </div>
+                                    
+                                    <!-- Set background for slide in css -->
+                                    <div class="header-back one"></div>
+                        
+                                </div>
+                                
+                            </div>
+                            <a class="carousel-control-prev" href="#inSlider" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#inSlider" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="wrapper wrapper-content">
+                        <div class="container">
+                            <div class="row" style="align-content:center;">
+                                <div class="col-lg-12" style="display: flex; justify-content: center; " >
+                                    <h1 style="color:#e4f3fb;">Automated Trading</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+<!--
+                    <div class="wrapper wrapper-content">
+                        <div class="container">
+                        <div class="row" style="align-content:center;">
+                            <div class="col-lg-12" style="display: flex; justify-content: center; " >
+                                <h1 style="color:#e4f3fb;">What is Quant Funds</h1>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="wrapper wrapper-content">
+                        <div class="container">
+                        <div class="row" style="align-content:center;">
+                           
+                            <div class="col-lg-5"  >
+                                <span style="font-size:1rem;color: #fafafa;">
+                                 <strong>Quant Funds </strong> A new generation of portfolios that uses machine learning and artificial intelligence
+                                  to uncover the maximum alpha in profits from a variety of investments. 
+                                    <p></p>
+                               
+                             
+                                <strong>Quant strategies</strong></strong>  are data driven and rely on data, algorithms, and mathematical models to make investment decisions.
+                                <p></p>
+                                <br>
+                               
+                                <strong> Diversification: </strong>Quant portfolios can hold a large number of securities, reducing the risk associated with any single investment.
+                                <p></p>
+                                 <br>
+                              
+                                 <strong>Objectivity:</strong> Decisions made using quant strategies are based on data and algorithms, reducing the impact of emotional or psychological biases.
+                                 <p></p>
+                            <br>
+                              
+                                 <strong>Backtesting:</strong> Quant models can be tested using historical data to assess their potential performance.
+                                    <br>
+                                </span>
+                               
+
+
+
+                             
+                            </div>
+                            <div class="col-lg-1" ></div>
+                            <div class="col-lg-5"  >
+                                <div class="ibox ">
+                                   
+                                    <div class="ibox-content"  style="background-color: #e4f3fb;border-radius: 3px;" >
+                                        <div class="row">
+                                           
+                                            <div class="col-lg-12">
+                                                <h3 style="color: #3b5263;">Top Ranking Funds 2023 </h3>
+                                                <table class="table table-striped table-bordered table-hover dataTables-example">
+                                                    <thead>
+                                                        <tr style="background-color: #3b5263;">
+                                                            
+                                                            
+                                                            <th>Fund</th>
+                                                            <th>Start Date</th>
+                                                            <th>ROI</th>
+                                                          
+                                                        
+                                                       
+                                                        </tr>
+                                                    </thead>
+                        
+                                                 
+                                                    <tbody>
+                                                        <tr ng-repeat="data in portfoliolist">
+                                                           
+                                                            <td> <a  style="text-decoration:none;cursor:hand;"
+                                                                href="myinvestment-detail.html?myportfolioId={{data.id}}">{{data.portfolio_name}}</a></td>
+                                                            <td>{{ data.portfolio_startdate | date: "dd/MM/yy" }}</td>
+                                                            <td>{{data.profitlossPercentage}}</td>
+                                                            
+                        
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                 
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                       
+                                            
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                           
+                           
+                        </div>
+                    </div>
+
+
+
+                    <div class="wrapper wrapper-content">
+                        <div class="row" style="align-content:center;">
+                            <div class="col-lg-12" style="display: flex; justify-content: center; " >
+                                <h1 style="color:#e4f3fb;padding-right: 200px;">Services</h1>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="wrapper wrapper-content">
+                        <div class="row" style="align-content:center;">
+                            <div class="col-lg-1" >
+                                
+
+                             </div>
+
+                            <div class="col-lg-3" >
+                                <div class="ibox ">
+                                   
+                                    <div class="ibox-content"  style="background-color: #e4f3fb;border-radius: 3px;" >
+                                        <div class="row">
+                                           
+                                            <div class="col-lg-12">
+                                                <h2 style="color: #3b5263; ">Alerts </h2>
+                                                <ul style="padding-left: 0px;margin-left: 0px;">
+                                                    <li class="bullets">We provide <strong>alert services for US Stocks/ETF, Forex, Crypto </strong>and many more markets.  
+                                                    Our alerts are available on  <strong>Telegram and Whatsapp<br></strong></li>
+                                                    <li class="bullets">AllStrategies are based on day and swing trading.</li>
+                                                   
+                                                   
+                                                   
+                                                </ul>
+                                                 
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                       
+                                            
+                                    </div>
+                                </div>
+
+                             </div>
+                             <div class="col-lg-3" >
+                                <div class="ibox">
+                                   
+                                    <div class="ibox-content" style="background-color: #e4f3fb;border-radius: 3px;" >
+                                        <div class="row">
+                                           
+                                            <div class="col-lg-12">
+                                                <h2 style="color: #3b5263; ">Automated Trading </h2>
+                                                <ul style="padding-left: 0px;margin-left: 0px;">
+                                                    <li class="bullets">Trade US Stocks , CFD's, Forex and Crypto portfolios automatically using our technology. </li>
+                                                    <li class="bullets">Strategies are based on day and swing trading.</li>
+                                                    <li class="bullets">Our systems are connected to major brokers like IBKR, Alpaca, Lemon Markets, Alice Blue [ India] </li>
+                                                   
+                                                   
+                                                </ul>
+                                                 
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                       
+                                            
+                                    </div>
+                                </div>
+
+                             </div>
+                             <div class="col-lg-3" >
+                                <div class="ibox ">
+                                   
+                                    <div class="ibox-content"  style="background-color: #e4f3fb;border-radius: 3px;" >
+                                        <div class="row">
+                                           
+                                            <div class="col-lg-12">
+                                                <h2 style="color: #3b5263; ">Consultancy </h2>
+                                                <ul style="padding-left: 0px;margin-left: 0px;">
+                                                    <li class="bullets">Implement a Quant Strategy with the help of our consultants. </li>
+                                                    <li class="bullets">Design an Algo Trading Solution in Python and Pinescript.</li>
+                                                    <li class="bullets">Training in Algo Trading. </li>
+                                                   
+                                                   
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                       
+                                            
+                                    </div>
+                                </div>
+
+                             </div>
+                             <div class="col-lg-1" >
+                                
+
+                             </div>
+
+
+                             
+                        </div> -->
+
+                        <div class="row border-up" style="background-color: #2f77bb;">
+                            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0 ; background-color: #2f77bb;">
+                                <div class="navbar-header">
+                                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                                            class="fa fa-bars"></i> </a>
+                                            <ul class="nav navbar-top-links navbar-left p-3">
+                                                <span style="padding-right: 20px;"><img src="/img/quantportfolios_dark.png" width="200px"  > </span>
+                                                <span><a style="text-decoration:none;cursor:hand;color: coral;font-weight:800;"
+                                                        href="index.html">HOME</a></span>
+                                                <span style="padding-left: 22px;"><a
+                                                        style="text-decoration:none;cursor:hand;color: coral;font-weight:800;"
+                                                        href="portfolios.html">SMART PORTFOLIO</a></span>
+                                                <span style="padding-left: 22px;"><a
+                                                    style="text-decoration:none;cursor:hand;color: coral;font-weight:800;"
+                                                    href="alerts.html">Alerts</a></span>
+                                                <span style="padding-left: 22px;"><a
+                                                    style="text-decoration:none;cursor:hand;color: coral;font-weight:800;"
+                                                    href="automated_trading.html">Automated Trading</a></span>
+                                                <span style="padding-left: 22px;"><a
+                                                    style="text-decoration:none;cursor:hand;color: coral;font-weight:800;"
+                                                    href="consultancy.html">Consultancy</a></span>
+                    
+                                            </ul>     
+                                </div>
+                                
+            
+                                <ul class="nav navbar-top-links navbar-right p-3">
+                                  
+                                    <div >
+                                        <span style="color:white;padding-right:20px;font-weight:600;"><a href="index.html" style="color:white;">Home</a> 
+                                        </span>
+    
+                                        <span style="color:white;padding-right:20px;font-weight:600;"><a href="/signals/signals.html" style="color:white;">Signals</a> 
+                                        </span>
+    
+    
+                                        <span style="color:white;padding-right:20px;font-weight:600;"><a href="my-candidates.html" style="color:white;">Quantportfolios - 2023 All Rights Reserved.</a> 
+                                        </span>
+    
+                                    </div>
+                                    
+                                    
+    
+                                  
+                                    
+                                   
+    
+                                   
+                                </ul>
+                                
+                            </nav>
+                        </div>
+                        
+                    </div>
+                   
+                   
+                   
+                    
+
+                
+
+            </div>
+
+
+
+            
+           
+        
+
+   
+
+ 
+
+   
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <!-- <script src="js/plugins/pace/pace.min.js"></script> -->
+    <script>
+
+        $(function () {
+                
+            var data1 = [0,3,5,7,5,4,3,4,2,2];
+            var data2 = [0,3,6,8,9,11,13,12,14,13];
+
+
+                    $('#spark-1').sparkline(data2, {
+                    height: 100,
+                    width: '20vh',
+                    changeRangeMin: -10, 
+                    chartRangeMax: 10,
+                    lineColor: "green",
+                    fillColor:false,
+                    
+                    
+                    });
+                    $('#spark-1').sparkline(data1, {
+                        height: 100,
+                        width: '20vh',
+                        changeRangeMin: -10, 
+                        chartRangeMax: 10,
+                        lineColor:"blue",
+                        fillColor:false,
+                        composite: true
+                    });
+
+            });    
+    </script>
+    <div id="pagecounter"></div>
+        </div>
+</body>
+
+
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.9.4/ecommerce_products_grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 09 Jun 2022 03:36:24 GMT -->
+
+</html>

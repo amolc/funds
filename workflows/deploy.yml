@@ -1,0 +1,25 @@
+name: deploy prod
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy on web-server
+        uses: appleboy/ssh-action@master
+        with:
+          host: "iamstockbot.com"
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          sync: true
+          script: |        
+            cd /home/ubuntu/repos/quantfunds
+            git fetch origin main
+            git reset --hard FETCH_HEAD
+            git clean -d -f --exclude secrets
+            git pull
+            ./scripts/deployfrontend.sh quantfunds
